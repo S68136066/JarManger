@@ -6,6 +6,7 @@ import com.lxx.design.po.redadmin;
 import com.lxx.design.service.JarMangerBFService;
 import com.lxx.design.service.JarMangerService;
 import com.lxx.design.utils.CrossOriginUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +23,7 @@ import java.util.List;
  * @Time:11:15
  * @Desc:
  */
+@Slf4j
 @Controller
 public class JarMangerConterller {
     @Autowired
@@ -140,5 +142,23 @@ public class JarMangerConterller {
             return true;
         }
         return false;
+    }
+    @RequestMapping(value = "/FindAllJarMassage",method = RequestMethod.GET)
+    @ResponseBody
+    public List<JarMangerBF> FindAllJarMassage(HttpServletRequest request, HttpServletResponse response){
+        log.info("=================打包历史记录查询开始！=================");
+        //跨域问题
+        CrossOriginUtil.setNewCrossOrigin(request, response);
+        List<JarMangerBF> Listall = jbfs.FindAllJarMassage();
+        try {
+            if(Listall!=null&&Listall.size()>0){
+                log.info("=================打包历史记录查询成功！=================");
+                return Listall;
+            }
+        }catch (Exception e){
+                log.error("JarMangerConterller--FindAllJarMassage{" +e.getMessage()+"}");
+                return null;
+        }
+        return null;
     }
 }

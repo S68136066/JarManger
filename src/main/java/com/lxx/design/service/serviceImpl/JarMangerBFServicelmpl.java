@@ -6,6 +6,9 @@ import com.lxx.design.service.JarMangerBFService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author:李兴兴
  * @Date:2019/11/7
@@ -28,5 +31,18 @@ public class JarMangerBFServicelmpl implements JarMangerBFService {
             return true;
         }
         return false;
+    }
+    /**@author:李兴兴
+     *@desc:查询历史记录
+     *@param:
+     *@return:
+     */
+    @Override
+    public List<JarMangerBF> FindAllJarMassage() {
+        List<JarMangerBF> allList = jbfd.findAllByall();
+        if(allList!= null && allList.size()>0){
+            return allList;
+        }
+        return new ArrayList<>();
     }
 }

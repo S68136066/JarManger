@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.Mapping;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @Author:李兴兴
@@ -30,4 +31,13 @@ public interface JarMangerBFDao extends JpaRepository<JarMangerBF,Integer>,JpaSp
     @Query(value = "insert into jarmangerbf(JarName1,Principal1,SubTime1,FinishTime1,Status1,UpEnv1) values(?1,?2,?3,?4,?5,?6) ",nativeQuery = true )
     @Modifying
     Integer AddJarMangerBF(String JarName1,String Principal1,String SubTime1,String FinishTime1,String Status1,String UpEnv1);
+    /**@author:李兴兴
+      *@desc:查询历史记录
+      *@param:
+      *@return:
+      */
+    @Transactional
+    @Query(value = "select * from jarmangerbf",nativeQuery = true )
+    @Modifying
+    List<JarMangerBF> findAllByall();
 }

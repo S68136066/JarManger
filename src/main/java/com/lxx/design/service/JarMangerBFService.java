@@ -3,6 +3,8 @@ package com.lxx.design.service;
 import com.lxx.design.po.JarMangerBF;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  * @Author:李兴兴
  * @Date:2019/11/7
@@ -16,6 +18,11 @@ public interface JarMangerBFService {
       *@return:
       */
     Boolean AddJarMangerBF(String JarName1,String Principal1,String SubTime1,String FinishTime1,String Status1,String UpEnv1);
-
+    /**@author:李兴兴
+     *@desc:查询历史记录
+     *@param:
+     *@return:
+     */
+    List<JarMangerBF> FindAllJarMassage();
 }
 
